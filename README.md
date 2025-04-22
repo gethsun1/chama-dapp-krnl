@@ -1,8 +1,5 @@
 
 <p align="center">
-  <a href="https://github.com/your-org/chama-dapp/actions"><img src="https://img.shields.io/github/actions/workflow/status/your-org/chama-dapp/ci.yml?branch=main&label=CI&style=flat-square" alt="CI status"></a>
-  <a href="https://github.com/your-org/chama-dapp/releases"><img src="https://img.shields.io/github/v/release/your-org/chama-dapp?style=flat-square" alt="Latest Release"></a>
-  <a href="https://coveralls.io/github/your-org/chama-dapp"><img src="https://img.shields.io/coveralls/github/your-org/chama-dapp?style=flat-square" alt="Coverage"></a>
   <a href="https://twitter.com/KRNL_xyz"><img src="https://img.shields.io/badge/KRNL%20Protocol-Integrated-blue?style=flat-square" alt="KRNL Protocol"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></a>
 </p>
