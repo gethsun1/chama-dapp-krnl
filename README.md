@@ -61,8 +61,8 @@ A **Chama** (Swahili for “group”) is a community-based savings circle where 
    - Members can form new Chamas or re‑join existing ones.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/🔄-Round-Robin-blue?style=for-the-badge" alt="Round Robin">
-  <img src="https://img.shields.io/badge/💰-Automated-Payouts-orange?style=for-the-badge" alt="Automated Payouts">
+  🔄 Round Robin
+  💰 Automated Payouts
 </p>
 
 ---
