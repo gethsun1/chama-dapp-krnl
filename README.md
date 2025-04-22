@@ -1,7 +1,4 @@
----
 
-```markdown
-<!-- PROJECT BADGES -->
 <p align="center">
   <a href="https://github.com/your-org/chama-dapp/actions"><img src="https://img.shields.io/github/actions/workflow/status/your-org/chama-dapp/ci.yml?branch=main&label=CI&style=flat-square" alt="CI status"></a>
   <a href="https://github.com/your-org/chama-dapp/releases"><img src="https://img.shields.io/github/v/release/your-org/chama-dapp?style=flat-square" alt="Latest Release"></a>
