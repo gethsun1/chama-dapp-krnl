@@ -1,148 +1,199 @@
-# Chama DApp with KRNL Integration
+---
 
-A decentralized application for creating and managing Chama groups with enhanced security and compliance through KRNL protocol integration.
+```markdown
+<!-- PROJECT BADGES -->
+<p align="center">
+  <a href="https://github.com/your-org/chama-dapp/actions"><img src="https://img.shields.io/github/actions/workflow/status/your-org/chama-dapp/ci.yml?branch=main&label=CI&style=flat-square" alt="CI status"></a>
+  <a href="https://github.com/your-org/chama-dapp/releases"><img src="https://img.shields.io/github/v/release/your-org/chama-dapp?style=flat-square" alt="Latest Release"></a>
+  <a href="https://coveralls.io/github/your-org/chama-dapp"><img src="https://img.shields.io/coveralls/github/your-org/chama-dapp?style=flat-square" alt="Coverage"></a>
+  <a href="https://twitter.com/KRNL_xyz"><img src="https://img.shields.io/badge/KRNL%20Protocol-Integrated-blue?style=flat-square" alt="KRNL Protocol"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></a>
+</p>
 
-## What is a Chama?
+# Chama DApp 🚀
 
-A Chama is a type of cooperative savings and investment group common in East Africa, particularly in Kenya. Similar to Rotating Savings and Credit Associations (ROSCAs) or "money pools" in other cultures, Chamas allow members to pool resources, save collectively, and provide each other with financial support. Traditionally managed through in-person meetings and paper records, the Chama DApp brings this concept to the blockchain for greater transparency, security, and accessibility.
+A **decentralized savings and credit** application (Chama) with built‑in **KRNL protocol** security for transparent, compliant group savings on the blockchain.
 
-## Key Features
+---
 
-- **Decentralized Chama Creation**: Create Chama groups on the Ethereum blockchain with customizable parameters
-- **Secure Member Management**: Add and manage members with blockchain-based verification
-- **Automated Contributions**: Make and track contributions with smart contract enforcement
-- **Transparent Payouts**: Execute payouts to members based on predefined rules
-- **KRNL Protocol Integration**: Enhanced security and compliance through KRNL kernels
-- **Web3 Wallet Integration**: Connect with MetaMask and other Ethereum wallets
+## 📖 Table of Contents
 
-## KRNL Protocol Integration
+1. [Overview](#overview)  
+2. [Features](#features)  
+3. [KRNL Integration](#krnl-integration)  
+4. [Smart Contracts](#smart-contracts)  
+5. [Frontend](#frontend)  
+6. [User Flow](#user-flow)  
+7. [Architecture](#architecture)  
+8. [Getting Started](#getting-started)  
+9. [Project Structure](#project-structure)  
+10. [Registration & IDs](#registration--ids)  
+11. [License](#license)
 
-The Chama DApp leverages the KRNL protocol for enhanced security and compliance:
+---
 
-- **Kernel 337 (Prohibited-list)**: Ensures users are not on prohibited lists before creating or joining Chamas
-- **Kernel 340 (Trusted-list)**: Verifies users are on trusted lists for enhanced security
+## 🔍 Overview
 
-These kernels provide real-time validation of user actions, ensuring compliance with predefined rules and enhancing the security of the platform.
+**Chama DApp** modernizes the East African *Chama* (ROSCA) model by moving group savings onto-chain for:
 
-## Smart Contracts
+- **Transparency:** Immutable on‑chain records  
+- **Security:** Smart‑contract enforcement  
+- **Compliance:** KRNL‑validated actions  
+- **Accessibility:** Wallet‑powered UX  
 
-### UpgradedChamaFactory
+---
 
-The main contract that manages the creation and operation of Chama groups.
+## ✨ Features
 
-- **Network**: Ethereum Sepolia Testnet
-- **Address**: `0x30a3a40FCDD904C32f0eBC2B05aC7082db0A7a6a`
+- **🆕 Create & Manage Chamas**  
+  Define name, description, deposit, cycle, penalty, and membership limits.  
+- **👥 Member Onboarding**  
+  Securely join existing Chamas with deposit collateral.  
+- **💰 Automated Contributions**  
+  Recurring, on‑schedule deposits enforced by smart contracts.  
+- **🔄 Round‑Robin Payouts**  
+  Lumpsum distribution each cycle, adjusted for defaults.  
+- **🔐 KRNL Protocol**  
+  Real‑time, on‑chain validation via kOS kernels.  
+- **🦊 Web3 Wallets**  
+  MetaMask, WalletConnect, and more out of the box.
 
-#### Key Functions
+---
 
-- `createChama(string name, string description, uint256 depositAmount, uint256 contributionAmount, uint256 penalty, uint256 maxMembers, uint256 cycleDuration, KrnlTypes.KrnlPayload memory krnlPayload)`: Creates a new Chama group with the specified parameters
-- `joinChama(uint256 chamaId, KrnlTypes.KrnlPayload memory krnlPayload)`: Allows a user to join an existing Chama
-- `contribute(uint256 chamaId, KrnlTypes.KrnlPayload memory krnlPayload)`: Makes a contribution to a Chama
-- `executePayout(uint256 chamaId, address memberAddress, KrnlTypes.KrnlPayload memory krnlPayload)`: Executes a payout to a Chama member
+## 🔗 KRNL Integration
 
-### TokenAuthority
+We leverage KRNL’s kOS kernels for mission‑critical checks:
 
-The contract that validates KRNL payloads and ensures compliance with security rules.
+| Kernel ID | Name              | Purpose                                                            |
+|:---------:|:------------------|:-------------------------------------------------------------------|
+| **337**   | Prohibited-list   | Blocks banned or malicious addresses                               |
+| **340**   | Trusted-list      | Verifies users against a vetted allowlist                          |
 
-- **Network**: Oasis Sapphire Testnet
-- **Address**: `0x8eE3A46aAd8c8F09d56D8d0D6A2227ee9eF45018`
+> All protected functions (`createChama`, `joinChama`, `contribute`, `payout`) require a **KRNL payload** and pass through our `TokenAuthority` for validation.
 
-## Frontend Application
+---
 
-The frontend is built with React and Vite, providing a modern and responsive user interface for interacting with the Chama DApp.
+## 📜 Smart Contracts
 
-### Key Components
+### 1. `UpdatedChamaFactory.sol`
+- **Network:** Ethereum Sepolia  
+- **Address:** `0x30a3a40FCDD904C32f0eBC2B05aC7082db0A7a6a`  
 
-- **Home Page**: Overview of the DApp and available Chamas
-- **Create Chama**: Form for creating new Chama groups
-- **Chama Details**: View and manage a specific Chama
-- **Member Dashboard**: Personal dashboard for users to track their Chamas and contributions
-- **Web3 Integration**: Connect wallet functionality with MetaMask support
+**Key Functions**  
+```solidity
+function createChama(..., KrnlPayload calldata krnl) external onlyAuthorized(krnl, ...);
+function joinChama(uint256 chamaId, KrnlPayload calldata krnl) external onlyAuthorized(krnl, ...);
+function contribute(uint256 chamaId, KrnlPayload calldata krnl) external onlyAuthorized(krnl, ...);
+function payout(uint256 chamaId, KrnlPayload calldata krnl) external onlyAuthorized(krnl, ...);
+```
 
-## User Flow
+### 2. `TokenAuthority.sol`
+- **Network:** Oasis Sapphire Testnet  
+- **Address:** `0x8eE3A46aAd8c8F09d56D8d0D6A2227ee9eF45018`  
 
-1. **Connect Wallet**: User connects their Ethereum wallet to the DApp
-2. **Create or Join Chama**: User creates a new Chama or joins an existing one
-3. **Make Contributions**: User makes regular contributions to their Chama(s)
-4. **Receive Payouts**: User receives payouts according to the Chama's rules
+Handles:  
+- Access token verification  
+- Runtime digest checks  
+- Kernel result validation and final signing  
 
-## Technical Architecture
+---
+
+## 🎨 Frontend
+
+Built with **React** & **Vite**, styled in Tailwind CSS.
+
+- **Pages & Components**  
+  - Home / Dashboard  
+  - Create Chama Form  
+  - Chama Detail & Contribution UI  
+  - Member Portfolio  
+- **Integration**  
+  - `ethers.js` for blockchain calls  
+  - `KrnlService` for generating and submitting KRNL payloads  
+  - Responsive design for desktop & mobile
+
+---
+
+## 🚀 User Flow
+
+1. **Connect Wallet** (MetaMask / WalletConnect)  
+2. **Create Chama** or **Join Existing**  
+3. **Deposit & Contribute** automatically each cycle  
+4. **Receive Lumpsum Payouts** in round‑robin order  
+5. **Track History** transparently on‑chain  
+
+---
+
+## 🏗️ Technical Architecture
 
 ### Smart Contract Layer
-
-- **Solidity Contracts**: Core business logic implemented in Solidity
-- **KRNL Integration**: Security and compliance through KRNL protocol
-- **ERC20 Support**: Support for ETH and potentially other tokens
+- **Solidity (v0.8.24)**  
+- **KRNL Protocol**: Kernel-based access control  
+- **ReentrancyGuard** and **Ownable** for security
 
 ### Application Layer
+- **React + Vite**  
+- **ethers.js** & **Web3Modal**  
+- **KrnlService** for kOS interoperability  
+- **Tailwind CSS** for styling  
 
-- **React Frontend**: Modern UI built with React
-- **ethers.js**: Ethereum interaction library
-- **Web3Modal**: Wallet connection management
-- **KrnlService**: Service for generating KRNL payloads
+---
 
-## Setup and Development
+## 🛠️ Getting Started
 
-### Smart Contract Development
+### Prerequisites
+- Node.js ≥ 16  
+- Yarn or npm  
+- MetaMask (or other Web3 wallet)  
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Smart Contract
+```bash
+git clone https://github.com/your-org/chama-dapp.git
+cd chama-dapp
+npm install
+# Compile & deploy via KRNL CLI
+krnl compile
+krnl deploy-all
+```
 
-2. Configure environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your values or run:
-   krnl setup
-   ```
+### Frontend
+```bash
+cd frontend
+yarn install
+yarn dev
+```
 
-3. Compile contracts:
-   ```bash
-   krnl compile
-   ```
+---
 
-4. Deploy contracts:
-   ```bash
-   krnl deploy-all
-   ```
+## 📁 Project Structure
 
-### Frontend Development
+```
+├── contracts/
+│   ├── KRNL.sol
+│   ├── TokenAuthority.sol
+│   └── UpdatedChamaFactory.sol
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── services/
+│   └── vite.config.js
+├── tests/
+├── scripts/
+└── README.md
+```
 
-1. Navigate to the frontend directory:
-   ```bash
-   cd chama-dapp
-   ```
+---
 
-2. Install dependencies:
-   ```bash
-   yarn install
-   ```
+## 🆔 Registration & IDs
 
-3. Start the development server:
-   ```bash
-   yarn dev
-   ```
+- **Contract ID:** 6983  
+- **DApp ID:** 6643  
+- **Entry ID:** `0xc99dc8d45e29dfb80ae76b15fe31e5d43f0f7371525649ab4e11b1521b7d4baf`
 
-## Project Structure
+---
 
-- `src/`: Smart contract source files
-  - `TokenAuthority.sol`: KRNL integration contract
-  - `KRNL.sol`: KRNL protocol interface
-- `chama-dapp/`: Frontend application
-  - `src/components/`: React components
-  - `src/contracts/`: Contract ABIs and configurations
-  - `src/services/`: Service classes including KrnlService
-  - `src/pages/`: Main application pages
-- `test/`: Test files for smart contracts
-- `script/`: Deployment scripts
+## 📜 License
 
-## KRNL Registration Information
-
-- **Contract ID**: 6983
-- **dApp ID**: 6643
-- **Entry ID**: 0xc99dc8d45e29dfb80ae76b15fe31e5d43f0f7371525649ab4e11b1521b7d4baf
-
-## License
-
-MIT
+Distributed under the **MIT License**. See [LICENSE](./LICENSE) for details.
+```
