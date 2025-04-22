@@ -1,0 +1,11 @@
+{
+  "tokenAuthority": {
+    "address": "0x59016421277Eea0F50568c0AfCd0c383Fa7a8cd7",
+    "network": "sapphire_testnet"
+  },
+  "mainContract": {
+    "address": "0xab05c6480f4306cB54d90eFbe64A250fFc8757d0",
+    "network": "sepolia"
+  },
+  "kernels": [337, 340]
+}

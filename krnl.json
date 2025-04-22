@@ -1,0 +1,71 @@
+{
+  "name": "ChamaDapp",
+  "description": "A decentralized application for creating and managing Chama groups with KRNL integration",
+  "version": "1.0.0",
+  "contracts": [
+    {
+      "name": "UpgradedChamaFactory",
+      "address": "0xab05c6480f4306cB54d90eFbe64A250fFc8757d0",
+      "network": "sepolia",
+      "kernels": [337, 340]
+    },
+    {
+      "name": "TokenAuthority",
+      "address": "0x59016421277Eea0F50568c0AfCd0c383Fa7a8cd7",
+      "network": "sapphire_testnet"
+    }
+  ],
+  "kernels": [
+    {
+      "id": 337,
+      "name": "Prohibited-list",
+      "description": "Checks if an address is on a prohibited list"
+    },
+    {
+      "id": 340,
+      "name": "Trusted-list",
+      "description": "Checks if an address is on a trusted list"
+    }
+  ],
+  "functions": [
+    {
+      "name": "createChama",
+      "contract": "UpgradedChamaFactory",
+      "kernels": [337, 340],
+      "parameters": [
+        "name",
+        "description",
+        "depositAmount",
+        "contributionAmount",
+        "penalty",
+        "maxMembers",
+        "cycleDuration"
+      ]
+    },
+    {
+      "name": "joinChama",
+      "contract": "UpgradedChamaFactory",
+      "kernels": [337, 340],
+      "parameters": [
+        "chamaId"
+      ]
+    },
+    {
+      "name": "contribute",
+      "contract": "UpgradedChamaFactory",
+      "kernels": [337, 340],
+      "parameters": [
+        "chamaId"
+      ]
+    },
+    {
+      "name": "executePayout",
+      "contract": "UpgradedChamaFactory",
+      "kernels": [337, 340],
+      "parameters": [
+        "chamaId",
+        "memberAddress"
+      ]
+    }
+  ]
+}

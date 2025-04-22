@@ -13,21 +13,18 @@ class KrnlService {
     this.krnlNodeUrl = "https://v0-0-1-rpc.node.lat";
 
     // Token Authority address on Oasis Sapphire
-    this.tokenAuthorityAddress = "0x59016421277Eea0F50568c0AfCd0c383Fa7a8cd7";
+    this.tokenAuthorityAddress = "0x8eE3A46aAd8c8F09d56D8d0D6A2227ee9eF45018";
 
     // Selected kernel IDs
-    this.kernelIds = [90, 91, 340, 347, 883]; // Using optimal kernels for Chama Dapp
-    // Kernel 90 (Optimism Sepolia) - Gitcoin Passport getScore (On-chain KYC)
-    // Kernel 91 (Optimism Sepolia) - Gitcoin Passport isHuman (On-chain KYC)
-    // Kernel 340 (Base Sepolia) - Trusted List (Allow only trusted wallet addresses)
-    // Kernel 347 (Optimism Sepolia) - Day and Time (Time-based validations)
-    // Kernel 883 (Sepolia) - Mock KYC score (For testing KYC integration)
+    this.kernelIds = [337, 340]; // Using registered kernels for Chama Dapp
+    // Kernel 337 - Prohibited-list (Checks if an address is on a prohibited list)
+    // Kernel 340 - Trusted-list (Checks if an address is on a trusted list)
 
     // KRNL Platform Registration Information
-    this.contractId = 6949;
-    this.dAppId = 6610;
-    this.entryId = "0x3552c4cf9f8f5b79b2083fb325c6d956a4aeb8bb70bcefa2972f503a2948cc06";
-    this.accessToken = "0x30450221009273a0a90b1bd13b0503c07a497018b554935a868ed4575ead1f80ffc296a856022044e81f75da0e50b39d31f50f4a79f7d0b0fe34e6342c6ba98de2f9557d7f16d3";
+    this.contractId = 6983;
+    this.dAppId = 6643;
+    this.entryId = "0xc99dc8d45e29dfb80ae76b15fe31e5d43f0f7371525649ab4e11b1521b7d4baf";
+    this.accessToken = "0x304502210080700cd917d1e27325db7227fd40460b7b48b30e961f00f0a657375c16131853022037aaa4768713503005c8e1990d2f6a16050c654fac1bb21953340c1ca430e9b9";
 
     // Runtime digest for the KRNL node
     this.runtimeDigest = "0x876924e18dd46dd3cbcad570a87137bbd828a7d0f3cad309f78ad2c9402eeeb7";
@@ -158,97 +155,14 @@ class KrnlService {
     // Create kernel responses based on the action
     let kernelResponses;
 
-    if (action === 'createChama') {
-      // For creating a Chama, all kernels should return positive responses
-      kernelResponses = [
-        // Kernel 90 (Gitcoin Passport getScore) - Score of 75 (passes threshold of 50)
-        [90, abiCoder.encode(['uint256'], [75]), ''],
+    // For all actions, we use the same kernels with positive responses
+    kernelResponses = [
+      // Kernel 337 (Prohibited-list) - User is not on prohibited list (0 means not prohibited)
+      [337, abiCoder.encode(['uint256'], [0]), ''],
 
-        // Kernel 91 (Gitcoin Passport isHuman) - User is human
-        [91, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 340 (Trusted List) - User is on trusted list
-        [340, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 347 (Day and Time) - Current day is Monday (weekday)
-        [347, abiCoder.encode(['string'], ['Monday 14:30']), ''],
-
-        // Kernel 883 (Mock KYC score) - KYC score of 85 (passes threshold of 60)
-        [883, abiCoder.encode(['uint256'], [85]), '']
-      ];
-    } else if (action === 'joinChama') {
-      // For joining a Chama, all kernels should return positive responses
-      kernelResponses = [
-        // Kernel 90 (Gitcoin Passport getScore) - Score of 65 (passes threshold of 50)
-        [90, abiCoder.encode(['uint256'], [65]), ''],
-
-        // Kernel 91 (Gitcoin Passport isHuman) - User is human
-        [91, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 340 (Trusted List) - User is on trusted list
-        [340, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 347 (Day and Time) - Current day is Tuesday (weekday)
-        [347, abiCoder.encode(['string'], ['Tuesday 10:15']), ''],
-
-        // Kernel 883 (Mock KYC score) - KYC score of 70 (passes threshold of 60)
-        [883, abiCoder.encode(['uint256'], [70]), '']
-      ];
-    } else if (action === 'contribute') {
-      // For contributing to a Chama, all kernels should return positive responses
-      kernelResponses = [
-        // Kernel 90 (Gitcoin Passport getScore) - Score of 60 (passes threshold of 50)
-        [90, abiCoder.encode(['uint256'], [60]), ''],
-
-        // Kernel 91 (Gitcoin Passport isHuman) - User is human
-        [91, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 340 (Trusted List) - User is on trusted list
-        [340, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 347 (Day and Time) - Current day is Wednesday (weekday)
-        [347, abiCoder.encode(['string'], ['Wednesday 16:45']), ''],
-
-        // Kernel 883 (Mock KYC score) - KYC score of 75 (passes threshold of 60)
-        [883, abiCoder.encode(['uint256'], [75]), '']
-      ];
-    } else if (action === 'payout') {
-      // For executing a payout, all kernels should return positive responses
-      kernelResponses = [
-        // Kernel 90 (Gitcoin Passport getScore) - Score of 80 (passes threshold of 50)
-        [90, abiCoder.encode(['uint256'], [80]), ''],
-
-        // Kernel 91 (Gitcoin Passport isHuman) - User is human
-        [91, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 340 (Trusted List) - User is on trusted list
-        [340, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 347 (Day and Time) - Current day is Thursday (weekday)
-        [347, abiCoder.encode(['string'], ['Thursday 09:30']), ''],
-
-        // Kernel 883 (Mock KYC score) - KYC score of 90 (passes threshold of 60)
-        [883, abiCoder.encode(['uint256'], [90]), '']
-      ];
-    } else {
-      // Default responses for any other action
-      kernelResponses = [
-        // Kernel 90 (Gitcoin Passport getScore) - Score of 70 (passes threshold of 50)
-        [90, abiCoder.encode(['uint256'], [70]), ''],
-
-        // Kernel 91 (Gitcoin Passport isHuman) - User is human
-        [91, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 340 (Trusted List) - User is on trusted list
-        [340, abiCoder.encode(['bool'], [true]), ''],
-
-        // Kernel 347 (Day and Time) - Current day is Friday (weekday)
-        [347, abiCoder.encode(['string'], ['Friday 12:00']), ''],
-
-        // Kernel 883 (Mock KYC score) - KYC score of 80 (passes threshold of 60)
-        [883, abiCoder.encode(['uint256'], [80]), '']
-      ];
-    }
+      // Kernel 340 (Trusted-list) - User is on trusted list
+      [340, abiCoder.encode(['bool'], [true]), '']
+    ];
 
     // Encode the kernel responses
     const mockKernelResponses = abiCoder.encode(
