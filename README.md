@@ -99,7 +99,7 @@ A **Chama** (Swahili for “group”) is a community-based savings circle where 
 
 ### UpdatedChamaFactory.sol
 - **Network:** Ethereum Sepolia
-- **Address:** `0xab05c6480f4306cB54d90eFbe64A250fFc8757d0`
+- **Address:** `0x792184F1818dA1d3D754796290E8BB795ADA1D56`
 
 Key signature:
 ```solidity
@@ -108,7 +108,7 @@ function createChama(..., KrnlPayload calldata krnl) external onlyAuthorized(krn
 
 ### TokenAuthority.sol
 - **Network:** Oasis Sapphire Testnet
-- **Address:** `0x8eE3A46aAd8c8F09d56D8d0D6A2227ee9eF45018`
+- **Address:** `0xBD4c76CA1d7663C42207f8256024BBbc23EA94e2`
 
 Manages:
 - Access token & runtime digest verification
@@ -197,9 +197,10 @@ README.md
 
 ## 🆔 Registration & IDs
 
-- **Contract ID:** 6983
-- **DApp ID:** 6643
-- **Entry ID:** `0xc99dc8d45e29dfb80ae76b15fe31e5d43f0f7371525649ab4e11b1521b7d4baf`
+- **Contract ID:** 6987
+- **DApp ID:** 6647
+- **Entry ID:** `0x25697230ba3dbe8965028244e85238a6f45f68bc7a83de008e0d330227eb3765`
+- **Access Token:** `0x3045022100ddcd683932eea49a3c3d0a2ebed7ac99cef9760639dc21de6d1d1ef3ad4f8cf102204cf9a37afddc17def4c687d2cedd8c46868484ff7e5e9ef0e8b9d5ca4841058c`
 
 ---
 

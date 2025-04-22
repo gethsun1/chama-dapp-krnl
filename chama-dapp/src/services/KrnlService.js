@@ -13,7 +13,7 @@ class KrnlService {
     this.krnlNodeUrl = "https://v0-0-1-rpc.node.lat";
 
     // Token Authority address on Oasis Sapphire
-    this.tokenAuthorityAddress = "0x8eE3A46aAd8c8F09d56D8d0D6A2227ee9eF45018";
+    this.tokenAuthorityAddress = "0xBD4c76CA1d7663C42207f8256024BBbc23EA94e2";
 
     // Selected kernel IDs
     this.kernelIds = [337, 340]; // Using registered kernels for Chama Dapp
@@ -21,10 +21,10 @@ class KrnlService {
     // Kernel 340 - Trusted-list (Checks if an address is on a trusted list)
 
     // KRNL Platform Registration Information
-    this.contractId = 6983;
-    this.dAppId = 6643;
-    this.entryId = "0xc99dc8d45e29dfb80ae76b15fe31e5d43f0f7371525649ab4e11b1521b7d4baf";
-    this.accessToken = "0x304502210080700cd917d1e27325db7227fd40460b7b48b30e961f00f0a657375c16131853022037aaa4768713503005c8e1990d2f6a16050c654fac1bb21953340c1ca430e9b9";
+    this.contractId = 6987;
+    this.dAppId = 6647;
+    this.entryId = "0x25697230ba3dbe8965028244e85238a6f45f68bc7a83de008e0d330227eb3765";
+    this.accessToken = "0x3045022100ddcd683932eea49a3c3d0a2ebed7ac99cef9760639dc21de6d1d1ef3ad4f8cf102204cf9a37afddc17def4c687d2cedd8c46868484ff7e5e9ef0e8b9d5ca4841058c";
 
     // Runtime digest for the KRNL node
     this.runtimeDigest = "0x876924e18dd46dd3cbcad570a87137bbd828a7d0f3cad309f78ad2c9402eeeb7";
